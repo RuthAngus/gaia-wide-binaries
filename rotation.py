@@ -105,49 +105,16 @@ if __name__ == "__main__":
     # star2_kic["prot_ref"] = refs2
     # star2_kic.to_csv("star2_periods.csv")
 
-    star1_kic = pd.read_csv("star1_periods.csv")
-    star2_kic = pd.read_csv("star2_periods.csv")
+    star1_kic = pd.read_csv("star1_ages.csv")
+    star2_kic = pd.read_csv("star2_ages.csv")
 
-    star1_kic["B_V"] = teff2bv(star1_kic["teff"], star1_kic["logg"],
-                               star1_kic["feh"])
-    star2_kic["B_V"] = teff2bv(star2_kic["teff"], star2_kic["logg"],
-                               star2_kic["feh"])
-
-    ages1 = np.zeros_like(star1_kic.B_V.values)
-    m1 = star1_kic.B_V.values > 0.4
-    ages1[m1] = age_model_b(star1_kic["prot"][m1], star1_kic["B_V"][m1])
-    star1_kic["gyro_age"] = ages1
-    ages2 = np.zeros_like(star2_kic.B_V.values)
-    m2 = star2_kic.B_V.values > 0.4
-    ages2[m2] = age_model_b(star2_kic["prot"][m2], star2_kic["B_V"][m2])
-    star2_kic["gyro_age"] = ages2
-
-    fname = "chaplin_garcia.csv"
-    dat = pd.read_csv(fname)
-    astero_ages = np.zeros_like(star1_kic.prot.values)
-    astero_age_errps = np.zeros_like(star1_kic.prot.values)
-    astero_age_errms = np.zeros_like(star1_kic.prot.values)
-    for i, _ in enumerate(star1_kic.prot_ref):
-        print(star1_kic.prot_ref.values[i])
-        if star1_kic.prot_ref.values[i] == fname:
-            m = dat["KIC"] == star1_kic.kepid[i]
-            astero_ages[i] == dat["age"]
-            astero_age_errps[i] == dat["age_errp"]
-            astero_age_errms[i] == dat["age_errm"]
-    star1_kic["astero_age"] = astero_ages
-    star1_kic["astero_age_errp"] = astero_age_errps
-    star1_kic["astero_age_errm"] = astero_age_errps
-
-    source_ids1, source_ids2 = [], []
     xs = np.arange(.4, 1.5, .01)
-    for i, age in enumerate(ages1):
+    for i, age in enumerate(star1_kic.gyro_age.values):
         if star1_kic.prot.values[i] > 0 and star2_kic.prot.values[i] > 0:
-            source_ids1.append(str(star1_kic.source_id.values[i]))
-            source_ids2.append(str(star2_kic.source_id.values[i]))
-            print(star1_kic.prot.values[i], star2_kic.prot.values[i])
             x = [star1_kic.B_V[i], star2_kic.B_V[i]]
             y = [star1_kic.prot[i], star2_kic.prot[i]]
             yerr = [star1_kic.prot_err[i], star2_kic.prot_err[i]]
+
             plt.clf()
             plt.errorbar(x[0], y[0], yerr=yerr[0], fmt="r.")
             plt.errorbar(x[1], y[1], yerr=yerr[1], fmt="b.")
@@ -170,13 +137,3 @@ if __name__ == "__main__":
             plt.xlabel("B-V")
             plt.legend()
             plt.savefig("{0}".format(str(i).zfill(2)))
-
-    star1_kic.to_csv("star1_kic_ages.csv")
-    star2_kic.to_csv("star2_kic_ages.csv")
-
-    # star2_kic["B-V"] = teff2bv(star2_kic["teff"], star2_kic["logg"],
-    #                            star2_kic["feh"])
-    # star2_kic["age"] = age_model(star2_kic["prot"], star2_kic["B-V"])
-
-    # for i, _ in enumerate(star1_kic["age"]):
-    #     print(star1_kic["age"][i], star2_kic["age"][i])
