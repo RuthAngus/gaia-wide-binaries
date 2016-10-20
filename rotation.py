@@ -85,6 +85,33 @@ def get_periods(df):
     return kids, periods, period_errs, refs
 
 
+def get_bv_and_age(df):
+
+    # estimate B-V
+    df["B_V"] = teff2bv(df["teff"], df["logg"], df["feh"])
+
+    ages = np.zeros_like(df.B_V.values)
+    m = df.B_V.values > 0.4
+    ages[m] = age_model_b(df["prot"][m], df["B_V"][m])
+    df["gyro_age"] = ages
+
+    fname = "chaplin_garcia.csv"
+    dat = pd.read_csv(fname)
+    astero_ages = np.zeros_like(df.prot.values)
+    astero_age_errps = np.zeros_like(df.prot.values)
+    astero_age_errms = np.zeros_like(df.prot.values)
+    for i, _ in enumerate(df.prot_ref):
+        if df.prot_ref.values[i] == fname:
+            m = dat["KIC"] == df.kepid[i]
+            astero_ages[i] == dat["age"]
+            astero_age_errps[i] == dat["age_errp"]
+            astero_age_errms[i] == dat["age_errm"]
+    df["astero_age"] = astero_ages
+    df["astero_age_errp"] = astero_age_errps
+    df["astero_age_errm"] = astero_age_errps
+    return df
+
+
 if __name__ == "__main__":
 
     # # load the kepler stars
@@ -105,12 +132,17 @@ if __name__ == "__main__":
     # star2_kic["prot_ref"] = refs2
     # star2_kic.to_csv("star2_periods.csv")
 
-    star1_kic = pd.read_csv("star1_ages.csv")
-    star2_kic = pd.read_csv("star2_ages.csv")
+    star1_kic = pd.read_csv("star1_periods.csv")
+    star2_kic = pd.read_csv("star2_periods.csv")
+
+    star1_kic = get_bv_and_age(star1_kic)
+    star2_kic = get_bv_and_age(star2_kic)
 
     xs = np.arange(.4, 1.5, .01)
     for i, age in enumerate(star1_kic.gyro_age.values):
-        if star1_kic.prot.values[i] > 0 and star2_kic.prot.values[i] > 0:
+        if star1_kic.prot.values[i] > 0 and star2_kic.prot.values[i] > 0 \
+                and star1_kic.gyro_age.values[i] > 0 and \
+                star2_kic.gyro_age.values[i] > 0:
             x = [star1_kic.B_V[i], star2_kic.B_V[i]]
             y = [star1_kic.prot[i], star2_kic.prot[i]]
             yerr = [star1_kic.prot_err[i], star2_kic.prot_err[i]]
@@ -123,16 +155,12 @@ if __name__ == "__main__":
             ys2 = period_model_b(star2_kic.gyro_age.values[i], xs)
             plt.plot(xs, ys1, "--", color="r",
                      label="{0:.3} Gyr, log(g) = "
-                     "{1:.3}, {2}, {3}".format(star1_kic.gyro_age[i],
-                                               star1_kic.logg[i],
-                                               star1_kic.prot_ref[i],
-                                               star1_kic.kepid[i]))
+                     "{1:.3}".format(star1_kic.gyro_age[i],
+                                     star1_kic.logg[i]))
             plt.plot(xs, ys2, "--", color="b",
                      label="{0:.3} Gyr, log(g) = "
-                     "{1:.3}, {2}, {3}".format(star2_kic.gyro_age[i],
-                                               star2_kic.logg[i],
-                                               star2_kic.prot_ref[i],
-                                               star2_kic.kepid[i]))
+                     "{1:.3}".format(star2_kic.gyro_age[i],
+                                     star2_kic.logg[i]))
             plt.ylabel("period")
             plt.xlabel("B-V")
             plt.legend()
