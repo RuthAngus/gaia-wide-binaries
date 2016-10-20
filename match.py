@@ -35,16 +35,22 @@ def xmatch(m1, m2, fname):
     star2_tgas_epic = star2_df.iloc[np.where(m_tgas_epic)[0]]
     print(len(np.where(m_tgas_epic)[0]), "pairs found in K2")
 
-    star1_kic = pd.merge(star1_tgas, kplr_tgas, on="source_id")
+    # remove duplicated rows
+    dupk = kplr_tgas.duplicated("source_id")
+    dupe = epic_tgas.duplicated("source_id")
+
+    # merge dataframes
+    star1_kic = pd.merge(star1_tgas, kplr_tgas[~dupk], on="source_id")
     star1_kic.to_csv("star1_kic_{0}.csv".format(fname))
     star2_kic = pd.merge(star2_tgas, kplr_tgas, on="source_id")
     star2_kic.to_csv("star2_kic_{0}.csv".format(fname))
-    star1_epic = pd.merge(star1_tgas_epic, epic_tgas, on="source_id")
+    star1_epic = pd.merge(star1_tgas_epic, epic_tgas[~dupe], on="source_id")
     star1_epic.to_csv("star1_epic_{0}.csv".format(fname))
     star2_epic = pd.merge(star2_tgas_epic, epic_tgas, on="source_id")
     star2_epic.to_csv("star2_epic_{0}.csv".format(fname))
 
     plt.clf()
+    print(np.shape(star1_kic.ra_x.values), np.shape(star2_kic.ra_x.values))
     for i, _ in enumerate(star1_kic.ra_x.values):
         plt.plot([star1_kic.ra_x.values[i], star2_kic.ra_x.values[i]],
                  [star1_kic.dec_x.values[i], star2_kic.dec_x.values[i]])
