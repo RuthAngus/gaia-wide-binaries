@@ -43,27 +43,27 @@ def period_model_b(age, bv):
 
 
 def search_db(id, df_name, DATA_DIR):
-    prot, prot_err, ref = 0, 0, 0
+    prot, prot_err, ref = 0., 0., 0.
     d = pd.read_csv(os.path.join(DATA_DIR, df_name))
-    m = np.array(d["KIC"]) == int(id)
-    if len(np.array(d["KIC"])[m]):
-        prot = float(np.array(d["period"])[m])
-        prot_err = float(np.array(d["period_err"])[m])
+    m = d.KIC.values == int(id)
+    if len(d.KIC.values[m]):
+        prot = float(d.period.values[m])
+        prot_err = float(d.period_err.values[m])
         ref = df_name
         print("Rotation period from {0}: \
                 {1:.2} +/- {2:.2} Days".format(ref, prot, prot_err))
     return prot, prot_err, ref
 
 
-def search_tables(id):
+def search_tables(id, DATA_DIR):
     periods1, period_errs1, refs1 = None, None, None
-    periods1, period_errs1, refs1 = search_db(id, "vansaders.txt", ".")
+    periods1, period_errs1, refs1 = search_db(id, "vansaders.txt", DATA_DIR)
     if not periods1:
         periods1, period_errs1, refs1 = \
-            search_db(id, "Table_1_Periodic.txt", ".")
+            search_db(id, "Table_1_Periodic.txt", DATA_DIR)
     if not periods1:
         periods1, period_errs1, refs1 = \
-            search_db(id, "chaplin_garcia.csv", ".")
+            search_db(id, "chaplin_garcia.csv", DATA_DIR)
     if not periods1:
         Rdata = pd.read_csv(os.path.join(DATA_DIR,
                                          "Table_2_Non_Periodic.txt"))
