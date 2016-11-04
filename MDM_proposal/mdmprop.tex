@@ -1,0 +1,341 @@
+% MDMPROP.TEX -- MDM electronic proposal form.
+% Revision: October 7, 2016 --- valid for the 2016A observing semester.
+% DEADLINE: 5:00 PM Monday November 7, 2016
+%
+% General Instructions:
+%
+%   I. Where/how/when to submit this form:
+%
+%      Give a paper copy to Jules or his mailbox on the 10th floor
+%      of Pupin by the above deadline, or email the postscript or
+%      pdf file to jules@astro.columbia.edu.
+%
+% THE FORM STARTS HERE
+
+% please don't modify or delete this line.
+\documentstyle[mdmprop,11pt]{article}
+
+\newcommand{\Kepler}{{\it Kepler}}
+\newcommand{\kepler}{{\it Kepler}}
+\newcommand{\gaia}{{\it Gaia}}
+\newcommand{\Gaia}{{\it Gaia}}
+\newcommand{\TGAS}{{\it TGAS}}
+\newcommand{\tgas}{{\it TGAS}}
+
+\begin{document}
+
+% Give a descriptive title for the proposal in the \title command.
+%
+%    \title{TEXT}
+%
+% Note that a title can be quite long; LaTeX will break the title into
+% separate lines automatically.  If you wish to indicate line breaks
+% yourself, do so with a `\\' command at the appropriate point in
+% the title text.
+
+\title{Radial velocity follow-up of Gaia wide-binary candidates in the
+\Kepler\ field}
+
+% Investigator's (PI and CoI) information blocks.
+%
+% The PI must be affiliated with Columbia University.
+% Please give each investigator's name, email address.
+% At least one investigator must be listed as definitely
+% being present at the telescope.
+%
+%    \name{OBSERVER NAME}
+%    \emailaddress{EMAIL ADDRESS}
+%    \atthetelescope{Y/N}
+%
+% DO NOT remove the \begin{PI} and \end{PI} or the \begin{CoI} and
+% \end{CoI} lines.
+
+\begin{PI}
+\name{Ruth Angus}			% REQUIRED
+\emailaddress{ruthangus@gmail.com}		% REQUIRED
+\atthetelescope{Y}       % REQUIRED
+\end{PI}
+
+\begin{CoI}
+\name{Semyeong Oh}			% REQUIRED
+\emailaddress{semyeong@astro.princeton.edu}		% REQUIRED
+\atthetelescope{N}       % REQUIRED
+\end{CoI}
+
+\begin{CoI}
+\name{Adrian Price-Whelan}			% REQUIRED
+\emailaddress{adrianmpw@gmail.com}
+\atthetelescope{N}       % REQUIRED
+\end{CoI}
+
+\begin{CoI}
+\name{Marcel Agueros}			% REQUIRED
+\emailaddress{marcel@astro.columbia.edu}
+\atthetelescope{N}       % REQUIRED
+\end{CoI}
+
+% \begin{CoI}
+% \name{}			% REQUIRED
+% \emailaddress{}		% REQUIRED
+% \atthetelescope{}       % REQUIRED
+% \end{CoI}
+
+% You can supply more CoI blocks, but only the first three will be
+% printed on the form.
+
+% Give a general abstract of the scientific justification appropriate for
+% a non-specialist.  Write the abstract between the \begin{abstract} and
+% \end{abstract} lines.  Limit yourself to approximately 175 words.
+
+% DO NOT remove the \begin{abstract} and \end{abstract} lines.
+
+\begin{abstract}
+\end{abstract}
+
+% Indicate whether you request classical scheduling or proxy queue
+% observations by putting a C or Q inside the \queue{} curly braces.
+% Queue is only on the 2.4m, and only using OSMOS.
+
+\queue{Q}
+
+% Indicate whether this proposal is part of your PhD thesis work by
+% putting a Y or an N inside the \thesis{} curly braces.
+% (This information is no longer requested).
+
+%\thesis{}
+
+% Indicate whether you are requesting long-term status by putting
+% a Y or an N inside the \longterm{} curly braces.  If you do want
+% long-term status (a "Y" answer), please tell us the number of nights,
+% number of semesters, and what telescopes by filling in \longtermdetails{}.
+% Please be brief; \longtermdetails is limited to one line.
+
+\longterm{N}
+% \longtermdetails{}
+
+% List the details of the observing runs being requested, for
+% UP TO THREE runs.  The parameters for each run are segregated
+% between \begin{obsrun} and \end{obsrun} lines.  Please be sure
+% that the information is isolated properly for each run.
+%
+%   \telescope{}	For example, \telescope{1.3m}
+%   \instrument{}	For example, \instrument{Mk III + Charlotte}
+%   \lunardays{}	For example, \lunardays{14}
+%   \optimaldates{}	For example, \optimaldates{Sep 1 - Nov 30}
+%   \acceptabledates{}	For example, \acceptabledates{Sep 1 - Dec 15}
+%
+%
+% Instrument combinations may be specified with "+".
+%
+% \numnights should give the number of nights of the run
+% \lunardays should specify the maximum number of nights from new moon
+% which can be utilized to accomplish your scientific goals.  It should
+% be a number from 1 (new moon) to 14 (full moon).
+%
+% \optimaldates should contain the range of OPTIMAL dates.
+%
+% \acceptabledates should give the range of ACCEPTABLE dates (i.e., you
+% would not accept time outside those limits).
+%
+% To enter the acceptable and optimal date ranges, please use two
+% dash-separated dates with 3-letter abbreviations for the month
+% (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)
+% followed by the day.  For example:  \optimaldates{Feb 15 - Apr 23}
+%
+% If you need to enter two or more ranges of acceptable or optimal dates
+% for a single observing run, separate the ranges by commas.  For example:
+% \acceptabledates{Oct 7 - Nov 24, Jan 7 - Jan 31}
+% It is not necessary to give date ranges based on lunar phase information.
+% For instance, if you wish to observe an object in March through May
+% within five days of new moon, you may give \lunardays{5} and
+% \optimaldates{Mar 1 - May 31} instead of multiple shorter date ranges.
+%
+% DO NOT remove the \begin{obsrun} and \end{obsrun} blocks.
+
+\begin{obsrun}
+\telescope{2.4}
+\instrument{OSMOS}
+\numnights{7}
+\lunardays{14}
+\optimaldates{July 1 - July 31}
+\acceptabledates{June 1 - July 31}
+\end{obsrun}
+
+% \begin{obsrun}
+% \telescope{}
+% \instrument{}
+% \numnights{}
+% \lunardays{}
+% \optimaldates{}
+% \acceptabledates{}
+% \end{obsrun}
+
+% \begin{obsrun}
+% \telescope{}
+% \instrument{}
+% \numnights{}
+% \lunardays{}
+% \optimaldates{}
+% \acceptabledates{}
+% \end{obsrun}
+
+% You may NOT supply more obsrun blocks.  Three is the limit.
+
+% If there are dates that you cannot use for non-astronomical reasons,
+% (i.e., other than moon phase or when your object is up)
+% please give the dates by filling in the curly braces in \unusabledates{}.
+% Please be brief; \unusabledates is LIMITED TO ONE LINE.
+
+% \unusabledates{}
+
+% In the following "essay question" sections, the delimiting pieces of
+% markup (\justification, \feasibility, etc.) act as LaTeX \section*{}
+% commands.  If the author wanted to have numbered subsections within
+% any of these, LaTeX's \subsection could be used.
+
+% SCIENTIFIC JUSTIFICATION
+%
+% Give the scientific justification for the proposed observations.
+% This section should consist of paragraphs of text (and may include
+% EPS figures) that follow the \justification line.
+% Try to include an explanation of the overall significance to astronomy.
+
+% In order to include an EPS plot, you should use the LaTeX "figure"
+% environment.  The plot file is included with the \plotone{FILENAME}
+% command; two side-by-side plot files can be included by typing
+% \plottwo{FILENAME1}{FILENAME2}.  Use \caption{} to specify a caption.
+% The \epsscale{} command can be used to scale \plotone plots if they
+% appear too large on the printed page.
+%
+% \begin{figure}
+% \epsscale{0.85}
+% \plotone{sample.eps}
+% \caption{Sample figure showing important results.}
+% \end{figure}
+%
+% If you need to rotate or make other transformations to a figure, you may
+% use the \plotfiddle command:
+% \plotfiddle{PSFILE}{VSIZE}{ROTANG}{HSCALE}{VSCALE}{HTRANS}{VTRANS}
+% \plotfiddle{sample.eps}{2.6in}{-90.}{32.}{32.}{-250}{225}
+% where HSCALE and VSCALE are percentages and HTRANS and VTRANS are
+% in PostScript units, 72 PS units = 1 inch.
+%
+% If you wish to use the "reference" environment, follow
+% the following example:
+%
+%\begin{references}
+%\reference Armandroff \& Massey 1991 AJ 102, 927.
+%\reference Berkhuijsen \& Humphreys 1989 A\&A 214, 68.
+%\reference Massey 1993 in Massive Stars: Their Lives in the Interstellar
+%  Medium (Review), ed. J. P. Cassinelli and E. B. Churchwell, p. 168.
+%\reference Massey, Armandroff, \& Pyke 1993, in prep.
+%\end{references}
+
+\justification
+The gradual decline in angular momentum over time is a well-established
+phenomenon in cool (FGK) Main Sequence (MS) stars.
+This phenomenon is attributed to magnetic braking: angular momentum is carried
+away by magnetised stellar winds and is often used as an astronomical clock.
+Stellar rotation periods increase (angular frequency decreases) with age, and
+the power-law slope of that relation depends, to first order, only on stellar
+mass.
+Although several studies have observed, characterised and calibrated the
+relation between rotation period and stellar age, the level of dispersion, the
+'intrinsic scatter' in these relations is thus unknown.
+The precision with which an age can be predicted from a rotation period has
+not, therefore been quantified.
+Open clusters are useful tools for calibrating stellar properties since (we
+assume) their members formed at the same time from the same molecular cloud.
+These stellar populations containing tens to thousands of members are
+excellent test-beds for age-rotation relations since, being coeval, the stars'
+rotation periods should depend only on their mass.
+Binaries are minimum-member stellar populations which also, presumably, form
+at the same epoch.
+These astronomical objects provide additional tests of age-rotation relations
+since again, the rotation periods of two stars in a binary system should
+depend only on their masses.
+In addition, they are often in more isolated environments than open clusters
+and are likely to have a different dynamical history.
+Semyeong Oh has identified several comoving pairs of stars in the first
+release of \gaia data which will be excellent test subjects for the
+age-rotation relations.
+{\bf We hope to demonstrate that rotation period is an excellent tracer of
+stellar age and to quantify the intrinsic scatter in the age-rotation
+relations using comoving pairs in the \Gaia\ \TGAS\ catalogue.}
+
+
+The \gaia spacecraft is an astrometric mission designed to, amongst other
+things, measure proper motions and parallaxes for a billion stars in the
+galaxy.
+The first data release (DR1) contained proper motions (in the plane of the
+sky) and parallaxes for two million bright stars with apparent magnitudes of
+12 and above.
+These data were searched for pairs and groups of stars with similar proper
+motions and parallaxes to produce a catalogue of comoving pair and group
+candidates.
+Some of these candidates will be members of thus unknown, newly discovered
+moving groups, others will be members of wide binaries.
+Our confidence in the fidelity of these comoving stars' identities is
+high --- we have selected only candidates with a less than 1 in 10,000 chance
+that they are moving with similar velocities at similar distances by random
+conincidence.
+There may still be some contamination however, since the \gaia DR1 contained
+only proper motions in RA and dec, not in the radial direction.
+{\bf We require radial velocities (RVs) in order to improve the confidence in
+the membership probabilities of these comoving candidates.}
+
+Of the several thousand comoving pair candidates identified over the entire
+sky, around 300 of these are in the \kepler field.
+12 stars have rotation periods measured by McQuillan (2013) and we are
+currently measuring rotation periods for the remainder.
+
+% FEASIBILITY
+%
+% Assess the technical and scientific feasibility of the observations.
+% This section should consist of text and tables only (no figures)
+% following the \feasibility line.
+%
+% List objects, coordinates, and magnitudes (or surface brightness,
+% if appropriate), desired S/N, wavelength coverage and resolution.
+% Justify the number of nights requested as well as the specific
+% telescope(s), instruments, and lunar phase.  Indicate the optimal
+% detector, as well as acceptable alternates.  If you've requested
+% long-term status, explain why this is necessary for successful
+% completion of the science.
+
+\feasibility
+
+Our targets are bright (11th - 12th mag) and located in the \kepler field
+($\alpha = , \gamma = $) which is best observed in July.
+Based on the magnitudes of our targets, with average exposure times of 10-12
+minutes, we require 7 nights in order to obtain RVs for 150 comoving pair
+candidates in the \kepler\ field.
+We expect to achieve an RV precision of 15-20 km s$^{-1}$, which will allow us
+to assign improved membership probabilities to these comoving pairs and
+groups.
+
+% OTHER FACILITIES
+%
+% Why MDM? If you are using other facilities for this project,
+% explain how the MDM observations fit into the scheme of things.
+%
+% This section should consist of text and tables only (no figures)
+% following the \feasibility line.
+
+\whymdm
+These are ideal targets for queue observing since they are bright and require
+short exposure times.
+We are not submitting proposals to other facilities for this project.
+
+% PAST USE
+%
+% List your allocation of telescope time at MDM during the
+% past 3 years, and describe the status of the project (cite
+% publications where appropriate).  Mark any allocations of time
+% related to the current proposal with a \relatedwork{} command.
+% Are your MDM observations achieving their goals?
+
+\thepast
+This is the first proposal for MDM lead by PI Ruth Angus.
+
+\end{document}
