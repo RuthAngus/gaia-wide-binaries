@@ -6,7 +6,7 @@ import h5py
 import glob
 
 plotpar = {'axes.labelsize': 18,
-           'text.fontsize': 10,
+           'font.size': 10,
            'legend.fontsize': 18,
            'xtick.labelsize': 18,
            'ytick.labelsize': 18,
@@ -20,6 +20,9 @@ LC_DIR = "/Users/ruthangus/.kplr/data/lightcurves"
 
 
 def teff2bv(teff, logg, feh):
+    """
+    Convert teff to B-V colour.
+    """
     # best fit parameters
     t = [-813.3175, 684.4585, -189.923, 17.40875]
     f = [1.2136, 0.0209]
@@ -32,28 +35,47 @@ def teff2bv(teff, logg, feh):
 
 
 def age_model_mh(p, bv):
+    """
+    Mamajek & Hillenbrand (2008) age model.
+    """
     a, n, b, c = .407, .566, .325, .495  # MH
     return (p / (a * (bv - c)**b))**(1./n) / 1000
 
 
 def age_model_b(p, bv):
+    """
+    Barnes (2003) age model.
+    """
     a, b, c, n = .7725, .601, .4, .5189
     return (p / (a * (bv - c)**b))**(1./n) / 1000
 
 
 def period_model_mh(age, bv):
+    """
+    Mamajek & Hillenbrand (2008) period model.
+    """
     a, n, b, c = .407, .566, .325, .495  # MH
     age *= 1000
     return age**n * a * (bv - c)**b
 
 
 def period_model_b(age, bv):
+    """
+    Barnes (2003) period model.
+    """
     a, b, c, n = .7725, .601, .4, .5189
     age *= 1000
     return age**n * a * (bv - c)**b
 
 
 def search_db(id, df_name, DATA_DIR):
+    """
+    Search a database (text file) a kic id and find the rotation period.
+    id: Kepid
+    df_name: the path to the text file. E.g. 'Table_1_Periodic.txt' for
+    McQuillan, 'data/chaplin-garcia.csv' for garcia or 'data/vansaders.txt'
+    for van saders.
+    """
     prot, prot_err, ref = 0., 0., 0.
     d = pd.read_csv(os.path.join(DATA_DIR, df_name))
     m = d.KIC.values == int(id)
@@ -67,6 +89,11 @@ def search_db(id, df_name, DATA_DIR):
 
 
 def search_tables(id, DATA_DIR):
+    """
+    Search several tables for rotation periods.
+    id: kepid
+    DATA_DIR: the directory of the rotation period catalogue file.
+    """
     periods1, period_errs1, refs1 = search_db(id, "Table_1_Periodic.txt",
                                               DATA_DIR)
     if not periods1:
@@ -79,6 +106,10 @@ def search_tables(id, DATA_DIR):
 
 
 def get_periods(df):
+    """
+    Find a period and reference for that period from the literature for all
+    stars in dataframe, df.
+    """
     kids, periods, period_errs = [np.zeros(len(df)) for i in range(3)]
     refs = []
     for i, id in enumerate(df.kepid.values):
@@ -89,7 +120,9 @@ def get_periods(df):
 
 
 def get_bv_and_age(df):
-
+    """
+    Calculate the B-V colour and age of the stars in dataframe df.
+    """
     # estimate B-V
     df["B_V"] = teff2bv(df["teff"], df["logg"], df["feh"])
 
