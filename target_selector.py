@@ -1,3 +1,4 @@
+# making plots and selecting targets for MDM proposal.
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -11,6 +12,9 @@ plotpar = {'axes.labelsize': 18,
            'text.usetex': True}
 plt.rcParams.update(plotpar)
 
+# load kepler-tgas
+ktgas = pd.read_csv("kic_tgas.csv")
+
 # load kepler-tgas catalogues.
 star1_kic = pd.read_csv("star1_periods.csv")
 star2_kic = pd.read_csv("star2_periods.csv")
@@ -20,6 +24,7 @@ star2_kic = get_bv_and_age(star2_kic)
 # Plot 1: RA and DEC.
 N = 150
 plt.clf()
+plt.plot(ktgas.ra, ktgas.dec, ".", color=".95", ms=15, zorder=0)
 y1, x1 = star1_kic.dec_x.values[:N], star1_kic.ra_x.values[:N]
 y2, x2 = star2_kic.dec_x.values[:N], star2_kic.ra_x.values[:N]
 yerr1 = star1_kic.dec_error_x.values[:N]
@@ -27,11 +32,15 @@ yerr2 = star2_kic.dec_error_x.values[:N]
 xerr1 = star1_kic.ra_error_x.values[:N]
 xerr2 = star2_kic.ra_error_x.values[:N]
 for i, ra in enumerate(x1):
-    plt.plot([x1[i], x2[i]], [y1[i], y2[i]], color="k", alpha=.5)
-plt.errorbar(x1, y1, yerr=yerr1, xerr=xerr1, fmt="k.", capsize=0, ecolor=".7")
-plt.errorbar(x2, y2, yerr=yerr2, xerr=xerr2, fmt="k.", capsize=0, ecolor=".7")
-plt.xlabel("$\mathrm{Right~Ascension~(degrees)}$")
-plt.ylabel("$\mathrm{Declination~(degrees)}$")
+    plt.plot([x1[i], x2[i]], [y1[i], y2[i]], color=".7", alpha=.5, zorder=1)
+plt.errorbar(x1, y1, yerr=yerr1, xerr=xerr1, fmt="k.", capsize=0, zorder=2)
+plt.errorbar(x2, y2, yerr=yerr2, xerr=xerr2, fmt="k.", capsize=0, zorder=2)
+plt.xlim(278, 304)
+plt.ylim(35, 53)
+# plt.xlabel("$\mathrm{Right~Ascension~(degrees)}$")
+# plt.ylabel("$\mathrm{Declination~(degrees)}$")
+plt.xlabel("$\\alpha(^{\circ})$")
+plt.ylabel("$\delta(^{\circ})$")
 plt.savefig("MDM_proposal/ra_vs_dec")
 
 # # Plot 2: Rotation period vs colour?
