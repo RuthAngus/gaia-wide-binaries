@@ -1,3 +1,7 @@
 *.png
 *.csv
 *.fits
+*.aux
+*.log
+*.sty
+__pycache__

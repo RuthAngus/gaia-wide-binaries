@@ -17,12 +17,18 @@
 
 \newcommand{\Kepler}{{\it Kepler}}
 \newcommand{\kepler}{{\it Kepler}}
+\newcommand{\ktwo}{{\it K2}}
+\newcommand{\Ktwo}{{\it K2}}
 \newcommand{\gaia}{{\it Gaia}}
 \newcommand{\Gaia}{{\it Gaia}}
 \newcommand{\TGAS}{{\it TGAS}}
 \newcommand{\tgas}{{\it TGAS}}
+\newcommand{\mdm}{{\it MDM}}
+\newcommand{\MDM}{{\it MDM}}
+\newcommand{\aap}{AAP}
 \newcommand{\apj}{ApJ}
 \newcommand{\apjl}{ApJ Letters}
+\newcommand{\apjs}{ApJ Supplement}
 \newcommand{\mnras}{MNRAS}
 \newcommand{\nat}{Nature}
 \newcommand{\etal}{{\it et al.}}
@@ -39,7 +45,7 @@
 % yourself, do so with a `\\' command at the appropriate point in
 % the title text.
 
-\title{Radial velocity follow-up of Gaia wide-binary candidates in the
+\title{Radial velocity follow-up of \Gaia\ wide-binary candidates in the
 \Kepler\ field}
 
 % Investigator's (PI and CoI) information blocks.
@@ -75,6 +81,12 @@
 \end{CoI}
 
 \begin{CoI}
+\name{Stephanie Douglas}			% REQUIRED
+\emailaddress{stephanietdouglas@gmail.com}
+\atthetelescope{N}       % REQUIRED
+\end{CoI}
+
+\begin{CoI}
 \name{Marcel Agueros}			% REQUIRED
 \emailaddress{marcel@astro.columbia.edu}
 \atthetelescope{N}       % REQUIRED
@@ -96,6 +108,28 @@
 % DO NOT remove the \begin{abstract} and \end{abstract} lines.
 
 \begin{abstract}
+The age-rotation relations (often called gyrochronology relations) are a
+powerful tool for dating Main Sequence (MS) stars.
+Unfortunately however, they suffer from poor calibration due to a lack
+of rotation period data for stars with precise ages.
+This problem has been somewhat remedied in recent years by the \kepler\
+spacecraft (Borucki et al. 2010) which has obtained light curves for 10$^6$
+stars with ten parts-per-million precision.
+Signatures of stellar rotation are visible in many of these light curves and
+rotation period catalogues have been compiled from the \kepler\ data set (\eg\
+McQuillan \etal\ 2014, Garcia \etal\ 2014).
+Attempts to test and calibrate the age-rotation relations have already been
+made, using rotation periods of open clusters in the \kepler\ field of view
+(\eg\ Meibom \etal\ 2011, Douglas \etal\ 2016) however, the rotational evolution
+of field stars is still unknown (Angus \etal\ 2015, van Saders \etal\ 2016,
+Metcalfe \etal\ 2016).
+Investigating the rotational evolution of binaries and small moving groups
+will allow us to bridge the gap between clusters and field stars.
+Several new coeval groups of stars---binaries and comoving groups---within the
+\kepler\ field have been identified using the first \gaia\ Data Release (DR1).
+We require follow-up Radial Velocity (RV) measurements of these stars in order
+to confirm their associations and test the age-rotation relations on a new,
+unique sample of stars.
 \end{abstract}
 
 % Indicate whether you request classical scheduling or proxy queue
@@ -167,23 +201,23 @@
 \acceptabledates{June 1 - July 31}
 \end{obsrun}
 
-% \begin{obsrun}
-% \telescope{}
-% \instrument{}
-% \numnights{}
-% \lunardays{}
-% \optimaldates{}
-% \acceptabledates{}
-% \end{obsrun}
+\begin{obsrun}
+\telescope{}
+\instrument{}
+\numnights{}
+\lunardays{}
+\optimaldates{}
+\acceptabledates{}
+\end{obsrun}
 
-% \begin{obsrun}
-% \telescope{}
-% \instrument{}
-% \numnights{}
-% \lunardays{}
-% \optimaldates{}
-% \acceptabledates{}
-% \end{obsrun}
+\begin{obsrun}
+\telescope{}
+\instrument{}
+\numnights{}
+\lunardays{}
+\optimaldates{}
+\acceptabledates{}
+\end{obsrun}
 
 % You may NOT supply more obsrun blocks.  Three is the limit.
 
@@ -239,63 +273,92 @@
 
 \justification
 The gradual decline in angular momentum over time is a well-established
-phenomenon in cool (FGK) Main Sequence (MS) stars (\eg Weber \& Davis 1968;
+phenomenon in cool (FGK) MS stars (\eg\ Weber \& Davis 1968;
 Skumanich 1972; Kawaler 1989; Barnes 2003; Barnes 2007; Mamajek \&
-Hillenbrand 2008; Meibom \etal 2010; Angus \etal 2015; van Saders \etal
+Hillenbrand 2008; Meibom \etal\ 2010; Angus \etal\ 2015; van Saders \etal\
 2016).
 This phenomenon is attributed to magnetic braking: angular momentum is carried
-away by magnetised stellar winds and is often used as an astronomical clock.
-Stellar rotation periods increase (angular frequency decreases) with age, and
-the power-law slope of that relation depends, to first order, only on
-stellar mass.
+away by magnetised stellar winds.
+Stellar rotation periods increase with age, and the intercept of that
+power-law relation depends, to first order, only on stellar mass.
+Rotation in cool MS stars can therefore be used as an astronomical clock.
+
 Although several studies have observed, characterised and calibrated the
 relation between rotation period and stellar age, the level of dispersion, the
-'intrinsic scatter' in these relations is thus unknown.
+`intrinsic scatter' in these relations is thus unknown.
 The precision with which an age can be predicted from a rotation period has
 not, therefore been quantified.
 Open clusters are useful tools for calibrating stellar properties since (we
 assume) their members formed at the same time from the same molecular cloud.
 These stellar populations containing tens to thousands of members are
-excellent test-beds for age-rotation relations since, being coeval, the stars'
-rotation periods should depend only on their mass.
+excellent test-beds for age-rotation relations since, being coeval, the
+differences between the stars' rotation periods should depend only on their
+mass.
 Binaries are minimum-member stellar populations which also, presumably, form
 at the same epoch.
 These astronomical objects provide additional tests of age-rotation relations
-since again, the rotation periods of two stars in a binary system should
-depend only on their masses.
+since again, the difference between the rotation periods of two stars in a
+binary system should depend only on their masses.
 In addition, they are often in more isolated environments than open clusters
 and are likely to have a different dynamical history.
-Semyeong Oh has identified several comoving pairs of stars in the first
-release of \gaia data which will be excellent test subjects for the
-age-rotation relations.
+Although rotational evolution appears to follow a simple power-law in open
+clusters, that same behaviour is not always observed in old field stars (Angus
+\etal\ 2015, van Saders \etal\ 2016, Metcalfe \etal\ 2016).
+Small coeval groups such as wide binaries and small moving groups provide an
+intermediate step between clusters and field stars and will allow us to bridge
+the gap between their rotational behaviour.
+Co-I Semyeong Oh has identified several comoving pairs of stars in the first
+release of \gaia\ data (Gaia Collaboration 2016) which will be excellent test
+subjects for the age-rotation relations.
 {\bf We hope to demonstrate that rotation period is an excellent tracer of
 stellar age and to quantify the intrinsic scatter in the age-rotation
 relations using comoving pairs in the \Gaia\ \TGAS\ catalogue.}
 
-The \gaia spacecraft is an astrometric mission designed to, amongst other
+The \gaia\ spacecraft is an astrometric mission designed to, amongst other
 things, measure proper motions and parallaxes for a billion stars in the
 galaxy.
-The first data release (DR1) contained proper motions (in the plane of the
+The first data release contained proper motions (in the plane of the
 sky) and parallaxes for two million bright stars with apparent magnitudes of
 12 and above.
 These data were searched for pairs and groups of stars with similar proper
 motions and parallaxes to produce a catalogue of comoving pair and group
 candidates.
-Some of these candidates will be members of thus unknown, newly discovered
-moving groups, others will be members of wide binaries.
+Some of these candidates will be members of hitherto unknown, newly
+discovered, moving groups and others will be members of wide binaries.
 Our confidence in the fidelity of these comoving stars' identities is
 high --- we have selected only candidates with a less than 1 in 10,000 chance
 that they are moving with similar velocities at similar distances by random
 conincidence.
-There may still be some contamination however, since the \gaia DR1 contained
+There may still be some contamination however, since the \gaia\ DR1 contained
 only proper motions in RA and dec, not in the radial direction.
-{\bf We require radial velocities (RVs) in order to improve the confidence in
+{\bf We require radial velocities (RVs) in order to improve confidence in
 the membership probabilities of these comoving candidates.}
 
 Of the several thousand comoving pair candidates identified over the entire
-sky, around 300 of these are in the \kepler field.
-12 stars have rotation periods measured by McQuillan (2013) and we are
+sky, around 200 of these are in the \kepler\ field.
+12 stars have rotation periods measured by McQuillan (2014) and we are
 currently measuring rotation periods for the remainder.
+Rotation periods can be measured from \kepler\ light curves due to the
+presence of magnetically active regions with suppressed convection.
+These regions are cooler, darker and rotate with the stellar surface, reducing
+the overall luminosity of the star when they periodically come into view.
+Since our ability to measure rotation periods for \kepler\ stars depends on
+the number, size and temperature of active regions, the inclination of the
+star, its apparent magnitude and the rotation period itself, it may not be
+possible to measure rotation periods for all of these stars.
+However, we apply a cut on light curve variance in order to select the most
+promising candidates.
+A larger variance within the light curve indicates that the amplitude of flux
+variations caused by star spots is larger, increasing our chances of measuring
+a rotation period.
+We are currently developing a new probabilistic method for measuring rotation
+periods, using a semi-parametric function; a Gaussian process.
+This new method will allow us to measure rotation periods from light curves
+with low-amplitude signals, including those that are quasi-periodic and
+non-sinusoidal.
+It will also allow us to produce an uncensored catalogue of samples from the
+posterior probability density function of rotation periods with which we can
+execute a sophisticated statistical analysis of this sample of comoving pairs.
 
 %\reference Armandroff \& Massey 1991 AJ 102, 927.
 %\reference Berkhuijsen \& Humphreys 1989 A\&A 214, 68.
@@ -320,18 +383,59 @@ currently measuring rotation periods for the remainder.
 % Hillenbrand, L.~A.\ 2008, \apj, 687, 1264-1293
 
 \begin{references}
-\reference Skumanich 1972 \apj 171, 565
-\reference Weber \& Davis 1967 \apj 148, 217
-\reference Kawaler 1989 \apjl 343, L65
-\reference Barnes 2003 \apj 586, 464
-\reference Barnes 2007 \apj 669, 1167
-\reference Barnes 2010 \apj 722, 222
-\reference Meibom et al. 2011 \apj 733, 115
-\reference Matt et al. 2012 \apjl 754, L26
-\reference van Saders et al. 2016 \nat 529, 181
-\reference Angus et al. 2015 \mnras 450, 1787
-\reference Mamajek \& Hillenbrand \apj 687, 1264-1293
+\reference Angus \etal\ 2015 \mnras\ 450, 1787
+\reference Borucki \etal\ 2010 Science 327, 977
+\reference Barnes 2003 \apj\ 586, 464
+\reference Barnes 2007 \apj\ 669, 1167
+\reference Barnes 2010 \apj\ 722, 222
+\reference Douglas et al. 2016 \apj\ 822, 47
+\reference Gaia Collaboration. 2016, ArXiv e-prints, arXiv:1609.04153
+\reference Garc{\'{\i}}a \etal\ 2014 \aap\ 572, A34
+\reference Kawaler 1989 \apjl\ 343, L65
+\reference Mamajek \& Hillenbrand \apj\ 687, 1264-1293
+\reference Matt \etal\ 2012 \apjl\ 754, L26
+\reference McQuillan \etal\ 2014 \apjs\ 211, 24
+\reference Meibom et al. 2011 \apj\ 733, 115
+\reference Metcalfe et al 2016 \apjl\ 826, L2
+\reference Skumanich 1972 \apj\ 171, 565
+\reference van Saders \etal\ 2016 \nat\ 529, 181
+\reference Weber \& Davis 1967 \apj\ 148, 217
 \end{references}
+
+\begin{figure}
+\plotone{ra_vs_dec.eps}
+\caption{Right Ascension vs declination for the \kepler\ field targets in our
+proposal.
+Connecting lines are drawn between comoving pair candidates.
+The \kepler field is indicated in grey.}
+\end{figure}
+
+% \begin{figure}
+% \begin{center}
+% \includegraphics[width=6in, clip=true]{ra_vs_dec.pdf}
+% \caption{LS periodograms}
+% \label{fig:ra_vs_dec}
+% \end{center}
+% \end{figure}
+
+% If you need to rotate or make other transformations to a figure, you may
+% use the \plotfiddle command:
+% \plotfiddle{PSFILE}{VSIZE}{ROTANG}{HSCALE}{VSCALE}{HTRANS}{VTRANS}
+% \plotfiddle{sample.eps}{2.6in}{-90.}{32.}{32.}{-250}{225}
+% where HSCALE and VSCALE are percentages and HTRANS and VTRANS are
+% in PostScript units, 72 PS units = 1 inch.
+%
+% If you wish to use the "reference" environment, follow
+% the following example:
+%
+%\begin{references}
+%\reference Armandroff \& Massey 1991 AJ 102, 927.
+%\reference Berkhuijsen \& Humphreys 1989 A\&A 214, 68.
+%\reference Massey 1993 in Massive Stars: Their Lives in the Interstellar
+%  Medium (Review), ed. J. P. Cassinelli and E. B. Churchwell, p. 168.
+%\reference Massey, Armandroff, \& Pyke 1993, in prep.
+%\end{references}
+
 
 % FEASIBILITY
 %
@@ -349,11 +453,16 @@ currently measuring rotation periods for the remainder.
 
 \feasibility
 
-Our targets are bright (11th - 12th mag) and located in the \kepler field
-($\alpha = , \gamma = $) which is best observed in July.
-Based on the magnitudes of our targets, with average exposure times of 10-12
-minutes, we require 7 nights in order to obtain RVs for 150 comoving pair
-candidates in the \kepler\ field.
+Our targets are bright (\gaia\ G-band, 6th - 12th mag) and mostly located in
+the \kepler\ field ($\alpha = 291^{\circ}, \delta = 44^{\circ}$) which is best
+observed in July.
+We will also supplement our target list with stars from \ktwo\ fields which
+are observable during February-July.
+
+Based on the magnitudes of our targets, with exposure times ranging from 30s
+for the brightest targets to 10 minutes for the faintest, we (conservatively)
+estimate that we will need just six nights in order to obtain spectra for 200
+stars in the \kepler\ and \ktwo\ fields.
 We expect to achieve an RV precision of 15-20 km s$^{-1}$, which will allow us
 to assign improved membership probabilities to these comoving pairs and
 groups.

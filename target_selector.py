@@ -22,15 +22,14 @@ star1_kic = get_bv_and_age(star1_kic)
 star2_kic = get_bv_and_age(star2_kic)
 
 # Plot 1: RA and DEC.
-N = 150
 plt.clf()
 plt.plot(ktgas.ra, ktgas.dec, ".", color=".95", ms=15, zorder=0)
-y1, x1 = star1_kic.dec_x.values[:N], star1_kic.ra_x.values[:N]
-y2, x2 = star2_kic.dec_x.values[:N], star2_kic.ra_x.values[:N]
-yerr1 = star1_kic.dec_error_x.values[:N]
-yerr2 = star2_kic.dec_error_x.values[:N]
-xerr1 = star1_kic.ra_error_x.values[:N]
-xerr2 = star2_kic.ra_error_x.values[:N]
+y1, x1 = star1_kic.dec_x.values, star1_kic.ra_x.values
+y2, x2 = star2_kic.dec_x.values, star2_kic.ra_x.values
+yerr1 = star1_kic.dec_error_x.values
+yerr2 = star2_kic.dec_error_x.values
+xerr1 = star1_kic.ra_error_x.values
+xerr2 = star2_kic.ra_error_x.values
 for i, ra in enumerate(x1):
     plt.plot([x1[i], x2[i]], [y1[i], y2[i]], color=".7", alpha=.5, zorder=1)
 plt.errorbar(x1, y1, yerr=yerr1, xerr=xerr1, fmt="k.", capsize=0, zorder=2)
@@ -41,7 +40,23 @@ plt.ylim(35, 53)
 # plt.ylabel("$\mathrm{Declination~(degrees)}$")
 plt.xlabel("$\\alpha(^{\circ})$")
 plt.ylabel("$\delta(^{\circ})$")
-plt.savefig("MDM_proposal/ra_vs_dec")
+plt.savefig("MDM_proposal/ra_vs_dec.eps", format="eps")
+
+mags = np.concatenate((star1_kic.phot_g_mean_mag_x.values,
+                       star2_kic.phot_g_mean_mag_x.values))
+plt.clf()
+plt.hist(mags, histtype="stepfilled", color="w")
+plt.xlabel("$\mathrm{Gaia~magnitude}$")
+plt.ylabel("$N$")
+plt.savefig("MDM_proposal/mag_hist.eps", format="eps")
+
+# Calculate total time needed.
+print(len(mags))
+hist, bins = np.histogram(mags)
+print(bins, hist)
+exptimes = [20, 20, 20, 30, 60, 60, 100, 300, 300, 600]
+print(sum(hist * exptimes) / 60 / 60, "hours")
+print(sum(hist * exptimes) / 60 / 60 / 6.5, "nights")
 
 # # Plot 2: Rotation period vs colour?
 # plt.clf()
