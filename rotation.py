@@ -350,9 +350,8 @@ def posteriors():
 if __name__ == "__main__":
 
     # plot_binary_gyrochrones()
-    plot_binary_gyrochrones()
-    assert 0
-    posteriors()
+    # plot_binary_gyrochrones()
+    # posteriors()
 
     # find all tgas kepler rotation periods
 
