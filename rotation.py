@@ -98,14 +98,14 @@ def search_tables(id, DATA_DIR):
                                               DATA_DIR)
     if not periods1:
         periods1, period_errs1, refs1 = \
-            search_db(id, "data/chaplin_garcia.csv", DATA_DIR)
+            search_db(id, "chaplin_garcia.csv", DATA_DIR)
     if not periods1:
         periods1, period_errs1, refs1 = \
-            search_db(id, "data/vansaders.txt", DATA_DIR)
+            search_db(id, "vansaders.txt", DATA_DIR)
     return periods1, period_errs1, refs1
 
 
-def get_periods(df):
+def get_periods(df, DATA_DIR):
     """
     Find a period and reference for that period from the literature for all
     stars in dataframe, df.
@@ -114,7 +114,7 @@ def get_periods(df):
     refs = []
     for i, id in enumerate(df.kepid.values):
         print(id)
-        periods[i], period_errs[i], ref = search_tables(id)
+        periods[i], period_errs[i], ref = search_tables(id, DATA_DIR)
         refs.append(ref)
     return kids, periods, period_errs, refs
 
@@ -150,11 +150,11 @@ def get_bv_and_age(df):
 
 def find_wbstar_prots():
     # load the kepler stars
-    star1_kic = pd.read_csv("star1_kic.csv")
-    star2_kic = pd.read_csv("star2_kic.csv")
+    star1_kic = pd.read_csv("star1_kic_1.csv")
+    star2_kic = pd.read_csv("star2_kic_1.csv")
 
-    kids1, periods1, period_errs1, refs1 = get_periods(star1_kic)
-    kids2, periods2, period_errs2, refs2 = get_periods(star2_kic)
+    kids1, periods1, period_errs1, refs1 = get_periods(star1_kic, DATA_DIR)
+    kids2, periods2, period_errs2, refs2 = get_periods(star2_kic, DATA_DIR)
 
     # save periods and refs
     print(periods1)
@@ -177,6 +177,7 @@ def plot_binary_gyrochrones():
     star2_kic = get_bv_and_age(star2_kic)
 
     xs = np.arange(.4, 1.5, .01)
+    star2_kic = star2_kic.iloc[:-1]
     for i, age in enumerate(star1_kic.gyro_age.values):
 
         if star1_kic.prot.values[i] > 0 and star2_kic.prot.values[i] > 0 \
@@ -207,7 +208,18 @@ def plot_binary_gyrochrones():
             plt.savefig("{0}_{1}_gyrochrones"
                         .format(star1_kic.source_id.values[i],
                                 star2_kic.source_id.values[i]))
+            print(star1_kic.kepid.values[i], star2_kic.kepid.values[i])
 
+    m = (star1_kic.prot.values > 0) & (star2_kic.prot.values > 0) & \
+            (star1_kic.gyro_age.values > 0) & \
+            (star2_kic.gyro_age.values > 0)
+    mc = pd.concat([star1_kic.iloc[m], star2_kic.iloc[m]])
+    unique, unique_inds = np.unique(mc.kepid.values, return_index=True)
+    print(np.shape(mc))
+    mc = mc.iloc[unique_inds]
+    print(np.shape(mc))
+
+    mc.to_csv("mcquillan.csv")
 
 def posteriors():
 
@@ -349,7 +361,8 @@ def posteriors():
 
 if __name__ == "__main__":
 
-    # plot_binary_gyrochrones()
+    plot_binary_gyrochrones()
+    assert 0
     # plot_binary_gyrochrones()
     # posteriors()
 
@@ -362,7 +375,8 @@ if __name__ == "__main__":
     kplr_tgas["B_V"] = teff2bv(kplr_tgas.teff, kplr_tgas.logg, kplr_tgas.feh)
 
     # look up rotation periods
-    prot, prot_err = [np.zeros_like(kplr_tgas.kepid.values) for i in range(2)]
+    prot, prot_err = [np.zeros((len(kplr_tgas.kepid.values))) for i in
+                      range(2)]
     refs = []
     for i, id in enumerate(kplr_tgas.kepid.values):
         print(i, "of", len(kplr_tgas.kepid.values))
